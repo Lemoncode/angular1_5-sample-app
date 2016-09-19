@@ -1,16 +1,36 @@
-# 00 Boilerplate
+# 01 Hello Angular
 
-In this sample we are going to setup the basic plumbing to "build" our project and launch it in a dev server.
+In this sample we are going to create an instantiante a minimum angular 1.5 application.
 
-## We are going to use:
+We are going to take as startup point _00 Boilerplate_
 
-- [Webpack](https://webpack.github.io/)
-- [Typescript](http://www.typescriptlang.org/)
+# Summary steps:
 
-## The most interesting parts worth to take a look
+- Install Angular libraries.
+- Creating the app.
+- Instantiating the app from the HTML.
+- Creating a component.
+- Displaying a component.
 
-- package.json: check packages installed.
+# Steps to build it
 
-- webpack.config.js: check the build process and ts-loader to handle typescript.
+## Prerequisites
 
-- src: javascript using imports.
+Prerequisites, you will need to have nodejs installed in your computer. If you want to follow this step guides you will need to take as starting point sample "00 Boilerplate"
+
+## Steps
+
+
+Let's start by installing Angular 1.x library
+
+```
+npm install angular@1.5.8 --save
+```
+
+Let's install the angularjs typings:
+
+```
+typings install dt~angular --global --save
+```
+
+Under _src_ folder let's create a file called _app.tsx_
