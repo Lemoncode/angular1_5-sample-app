@@ -100,3 +100,12 @@ Let's use this component in our _index.html_ file
   </div>
 </body>
 ```
+
+Now we can run the sample
+
+```
+npm start
+```
+
+And we can see how the _header_ component gets instantiated and bindings are
+working as expected.
