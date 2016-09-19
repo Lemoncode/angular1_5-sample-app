@@ -9,6 +9,6 @@ class HeaderController {
 }
 
 export const header = {
-  template: '<h1>Header testing bindings: {{$ctrl.sampleBinding}}',
+  template: '<h1>Header testing bindings: {{$ctrl.sampleBinding}}</h1>',
   controller: HeaderController
 }
