@@ -9,6 +9,9 @@ class LoginController {
 }
 
 export const login = {
-  template: '<h1>bindings test: {{$ctrl.sampleBinding}}</h1>',
+  template: `
+    <h1>bindings test: {{$ctrl.sampleBinding}}</h1>
+    <a ui-sref="patients">Navigate to patients</a>
+  `,
   controller: LoginController
 }

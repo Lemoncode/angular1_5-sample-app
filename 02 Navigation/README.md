@@ -119,3 +119,53 @@ _index.html_ file:
   <div ui-view="content"></div>
 </div>
 ```
+
+Let's create a dummy _patients_ component (later on it will display a list of
+patients appointments). We will create a subofolder components/patients and under
+that subfolder let's create a file called _patients.ts_
+
+```javascript
+import * as angular from 'angular';
+
+class PatientsController {
+  sampleBinding : string;
+
+  constructor() {
+    this.sampleBinding = "Hello from Patients";
+  }
+}
+
+export const patients = {
+  template: '<span>Bindings test: {{$ctrl.sampleBinding}}</h1>',
+  controller: PatientsController
+}
+```
+
+We have to register this component in our index.ts file
+
+```javascript
+import {patients} from './components/patients/patients';
+// (...)
+
+app.component('patients', patients);
+```
+
+Now we need to register a route to our new patients component:
+
+
+We can run the app and manually navigate to the _patients_ route, but rather
+we will just add a link from _login_ route to _patients_ route, let's open
+_components/login/login.ts_ and replace the html template by using backticks
+and adding a new link:
+
+```javascript
+export const login = {
+  template: `
+    <h1>bindings test: {{$ctrl.sampleBinding}}</h1>
+    <a ui-sref="patients">Navigate to patients</a>
+  `,
+  controller: LoginController
+}
+```
+
+Now we can repeat the same steps to create the _patient_ component.
