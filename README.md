@@ -6,8 +6,9 @@ Each sample will contains a readme.md file including an step by step guide to re
 
 List of samples:
 
-- 00 Hello world
-- 01 Navgitation
+- 00 Boiler plate
+- 00 Hello Angular
+- 01 Navigation
 - 02 List page.
 - 03 Form page
 - 04 Form Validation
