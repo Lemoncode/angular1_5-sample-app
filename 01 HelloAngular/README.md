@@ -53,3 +53,50 @@ console.log(app);
 
 Now if we open the console we can check that the app has been created successfuly
 (in the console window we can expand the dumped app object).
+
+Let's create our first component.
+
+First we will indicate in the HTML that we are going to use this application (index.html):
+
+```javascript
+<html ng-app="myAppointmentsApp">
+```
+
+Under _src_ let's create the following subfolders _components/common_ and
+under that subfolder let's create a file called _header.tsx_ this file will
+contain a simple "header" component:
+
+```javascript
+import * as angular from 'angular';
+
+class HeaderController {
+  sampleBinding : string;
+
+  constructor() {
+    this.sampleBinding = "Testing binding header component";
+  }
+}
+
+export const header = {
+  template: '<h1>Header testing bindings: {{$ctrl.sampleBinding}}',
+  controller: HeaderController
+}
+```
+
+Let's register this component in the _index.ts_ file
+
+```javascript
+var app = angular.module('myAppointmentsApp', []);
+
+app.component('header', header);
+```
+
+Let's use this component in our _index.html_ file
+
+```html
+<body>
+  <div>
+      <header/>
+  </div>
+</body>
+```
