@@ -96,7 +96,7 @@ Let's use this component in our _index.html_ file
 ```html
 <body>
   <div>
-      <header/>
+     <header></header>
   </div>
 </body>
 ```
