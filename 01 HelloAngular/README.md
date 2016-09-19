@@ -33,4 +33,23 @@ Let's install the angularjs typings:
 typings install dt~angular --global --save
 ```
 
-Under _src_ folder let's create a file called _app.tsx_
+We will need to install JQuery typings as well
+
+```
+typings install dt~jquery --global --save
+```
+
+Under _src_ folder let's replace the content of the _index.tsx_ file:
+
+```javascript
+import * as angular from 'angular'
+
+var app = angular.module('myAppointmentsApp', []);
+
+// Just to test if the app is instantiated
+// check the browser console (developer window)
+console.log(app);
+```
+
+Now if we open the console we can check that the app has been created successfuly
+(in the console window we can expand the dumped app object).
