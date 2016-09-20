@@ -6,6 +6,7 @@ import {login} from './components/login/login';
 import {patients} from './components/patients/patients';
 import {patient} from './components/patient/patient';
 import {searchPatient} from './components/patients/searchPatient';
+import {patientsList} from './components/patients/patientsList';
 
 var app = angular.module('myAppointmentsApp', ['ui.router'])
           .config(routing);
@@ -15,3 +16,4 @@ app.component('login', login);
 app.component('patients', patients);
 app.component('patient', patient);
 app.component('searchPatient', searchPatient);
+app.component('patientsList', patientsList);

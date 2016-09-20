@@ -13,10 +13,11 @@ module.exports = {
   entry: {
     app: './index.ts',
     styles: [
+      '../node_modules/bootstrap/dist/css/bootstrap.css',
       './css/site.css'
     ],
     vendor: [
-
+      'bootstrap'
     ]
   },
 
@@ -43,9 +44,19 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         loader: ExtractTextPlugin.extract('style','css')
+      },
+      //Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
+      {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+      {
+        test: /\.png$/,
+        loader: 'file?limit=0&name=[path][name].[hash].',
+        exclude: /node_modules/
       }
+
     ]
   },
 
@@ -55,6 +66,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html'
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
     })
   ]
 }

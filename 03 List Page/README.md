@@ -29,9 +29,89 @@ Before getting started building the app, let's install bootstrap and jquery, we 
 use bootstrap as a base to generate the layout.
 
 ```
-npm install bootstrap
-npm install jquery
+npm install jquery --save
+npm install bootstrap --save
 ```
+In webpack.config.js:
+
+
+
+
+We will just use a plugin to expose "$" (jquery) and "JQuery"
+as global names.
+
+```javascript
+plugins: [
+   // ...
+   //Expose jquery used by bootstrap
+   new webpack.ProvidePlugin({
+     $: "jquery",
+     jQuery: "jquery"
+   })
+ ]
+}
+```
+And let's add bootstrap.css to the styles array to be processed by webpack (webpack.config.js)
+
+```javascript
+entry: {
+  // (...)
+  styles: [
+    '../node_modules/bootstrap/dist/css/bootstrap.css',
+    './css/site.css'
+  ],
+  // (...)
+},
+```
+
+Bootstrap will expose glyphicons and other features, let's expose the right loaders
+for this.
+
+First we will install file-loader package
+
+```
+npm install file-loader --save-dev
+npm install url-loader --save-dev
+```
+We need to indicate that we will use bootstrap javascript:
+
+```javascript
+entry: {
+  // ...
+  vendor: [
+    'bootstrap'
+  ]
+},
+```
+
+On the CSS loader section, we have to remove the exclude "node_modules" folder
+
+```javascript
+{
+  test: /\.css$/,
+  loader: ExtractTextPlugin.extract('style','css')
+},
+```
+
+Then we will configure the loader for fonts / images.
+
+```javacript
+loaders: [
+      // (...)
+      //Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
+      {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+      {
+        test: /\.png$/,
+        loader: 'file?limit=0&name=[path][name].[hash].',
+        exclude: /node_modules/
+      }
+    ]
+  },
+```
+
 
 ### Data
 
@@ -201,3 +281,83 @@ Let's do a quick test and check that the component is properly displayed:
 ```
 npm start
 ```
+
+Great ! we get the panel displayed, let's draw the second component
+(list result).
+
+Let's create a new component called _patientsList_ in the following path
+src/components/patients/patientsList.ts
+
+```javascript
+import * as angular from 'angular';
+
+class PatientsListController {
+  constructor() {
+  }
+}
+
+export const patientList = {
+  template:
+  `
+  <div class="well">
+     <div class="row">
+       <div class="col-xs-offset-11 col-xs-1">
+         <div class="pull-right">
+           <span class="glyphicon glyphicon-plus-sign"></span>
+         </div>
+       </div>
+     </div>
+     <div class="row">
+       <table class="col-xs-12 table table-striped table-bordered">
+         <thead>
+           <tr>
+             <th class="hidden-xs hidden-sm hidden-md">DNI</th>
+             <th>Paciente</th>
+             <th>Especialidad</th>
+             <th class="hidden-xs hidden-sm hidden-md">Doctor</th>
+             <th class="hidden-xs">Cita</th>
+             <th class="hidden-xs">Hora</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td class="hidden-xs hidden-sm hidden-md">{{p.dni}}</td>
+             <td>Sample Name</td>
+             <td>
+               Sample Specialty
+               <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"
+                 >
+               </span>
+             </td>
+             <td class="hidden-xs hidden-sm hidden-md">{{p.doctor}}</td>
+             <td class="hidden-xs">{{p.date}}</td>
+             <td class="hidden-xs">
+               Sample Time
+               <span class="pull-right glyphicon glyphicon-pencil"
+                 >
+               </span>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+  `,
+  controller: PatientsListController
+}
+```
+
+Let's register this component in the index.ts
+
+```javascript
+
+```
+
+
+Let's use it in our patients component:
+
+```javascript
+```
+
+
+### Interaction
