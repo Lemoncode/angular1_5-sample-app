@@ -350,14 +350,54 @@ export const patientList = {
 Let's register this component in the index.ts
 
 ```javascript
+import {patientsList} from './components/patients/patientsList';
 
+app.component('patientsList', patientsList);
 ```
 
 
 Let's use it in our patients component:
 
 ```javascript
+export const patients = {
+  template: `
+    <div class="container-fluid">
+      <div class="row">
+        <search-patient class="col-md-4"></search-patient>
+         <patients-list class="col-md-8"></patients-list>
+      </div>
+    </div>
+  `,
+  controller: PatientsController
+}
 ```
 
 
 ### Interaction
+
+Now it's time to load the information about the patient's appointments in the
+appointments table.
+
+First of all le't s import some needed name space (patients entitiy, plus
+  patients data api)
+
+```javascript
+```
+
+We are going to define a member variable that will hold a list of Patients.
+
+```javascript
+```
+
+
+In the constructor of the PatientsList component we will load the list of
+patients via API
+
+```javascript
+```
+
+Finally we are going to bind the list into the layout using an ng-repeat
+and binding the fields to the given span.
+
+```` html
+```
