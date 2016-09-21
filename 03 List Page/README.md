@@ -387,32 +387,6 @@ export class Patient {
 }
 ```
 
-Now we need to create some mock data, let's create it under
-the following full path _/src_/api/mockData.ts
-
-```javascript
-import { Patient } from '../model/patient';
-
-const patientsMockData: Array<Patient> = [
-  { id: 1, dni: "1234567A", name: "John Doe", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "08:30" },
-  { id: 2, dni: "5067254B", name: "Anna S. Batiste", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "09:00" },
-  { id: 3, dni: "1902045C", name: "Octavia L. Hilton", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "09:30" },
-  { id: 4, dni: "1880514D", name: "Tony M. Herrera", specialty: "Oftalmología", doctor: "Ruthie A. Nemeth", date: "19/09/2019", time: "10:00" },
-  { id: 5, dni: "6810774E", name: "Robert J. Macias", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "10:30" }
-];
-
-const specialtiesMockData: Array<string> = [
-  "Cirugía",
-  "Traumatología",
-  "Oftalmología"
-];
-
-export {
-  patientsMockData,
-  specialtiesMockData
-}
-```
-
 And to end up with the client data layer, we will create a fake api (promise based) that will expose methods load the list of
 appointments plus specialties.
 
@@ -462,11 +436,11 @@ to dynamically load the list of patients (_patientsList.ts_).
 ```javascript
 class PatientsListController {
   public static $inject: Array<string> = ["PatientAPI"];
-  public patientsData : Array<Patient> = []
+  public patients : Array<Patient> = []
 
   constructor(patientAPI : PatientAPI) {
     patientAPI.getAllPatientsAsync().then((data) => {
-      this.patientsData = data;
+      this.patients = data;
     }
   );
   }
@@ -476,6 +450,23 @@ class PatientsListController {
 Finally we are going to bind the list into the layout using an ng-repeat
 and binding the fields to the given span.
 
-```` html
-
+```html
+<tr ng-repeat="patient in $ctrl.patients">
+  <td class="hidden-xs hidden-sm hidden-md">{{patient.dni}}</td>
+  <td>{{patient.name}}</td>
+  <td>
+    {{patient.specialty}}
+    <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"
+      >
+    </span>
+  </td>
+  <td class="hidden-xs hidden-sm hidden-md">{{patient.doctor}}</td>
+  <td class="hidden-xs">{{patient.date}}</td>
+  <td class="hidden-xs">
+    {{patient.time}}
+    <span class="pull-right glyphicon glyphicon-pencil"
+      >
+    </span>
+  </td>
+</tr>
 ```
