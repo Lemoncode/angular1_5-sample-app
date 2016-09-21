@@ -1,7 +1,16 @@
 import * as angular from 'angular';
+import {PatientAPI} from "../../api/patientAPI";
+import {Patient} from '../../model/patient';
 
 class PatientsListController {
-  constructor() {
+  public static $inject: Array<string> = ["PatientAPI"];
+  public patientsData : Array<Patient> = []
+
+  constructor(private patientAPI : PatientAPI) {
+    patientAPI.getAllPatientsAsync().then((data) => {
+      this.patientsData = data;
+    }
+  );
   }
 }
 

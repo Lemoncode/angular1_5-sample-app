@@ -1,26 +1,15 @@
 import { Patient } from '../model/patient';
-import { patientsMockData, specialtiesMockData } from './mockData';
 
-class PatientAPI {
-  getAllPatientsAsync(): Promise<Array<Patient>> {
-    let patientsPromise = new Promise((resolve, reject) => {
-      resolve(patientsMockData);
-    });
+export class PatientAPI {
+  public static $inject: Array<string> = ["$http"];
 
-    return patientsPromise;
-  };
+  private baseUrl: string = './mockData/patients.json';
 
-  getAllSpecialtiesAsync(): Promise<Array<string>> {
-    let specialtiesPromise = new Promise((resolve, reject) => {
-      resolve(specialtiesMockData);
-    });
+  constructor(private $http : angular.IHttpService) {
 
-    return specialtiesPromise;
   }
-}
 
-const patientAPI = new PatientAPI();
-
-export {
-  patientAPI
+  getAllPatientsAsync(): Promise<Array<Patient>> {
+    return this.$http.get(this.baseUrl).then(response => response.data);
+  };
 }

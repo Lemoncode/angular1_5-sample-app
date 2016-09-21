@@ -8,12 +8,14 @@ We are going to take as startup point _02 Navigation_
 
 # Summary steps:
 
-- Create entities.
-- Create api.
-- Create Mock data.
 - Import bootstrap libraries.
 - Create the searchPatient component (dummy).
 - Create the listComponent.
+
+- Add mock data plus copy to dev.
+- Create entities.
+- Create api.
+
 
 # Steps to build it
 
@@ -114,6 +116,78 @@ loaders: [
 
 
 ### Data
+
+Let's create a mock json file under the "MockDataFolder" let's call it _patients.json
+
+```json
+{
+  [
+    {
+      "id": 1,
+      "dni": "1234567A",
+      "name": "John Doe",
+      "specialty": "Traumatología",
+      "doctor": "Karl J. Linville",
+      "date": "19/09/2019",
+      "time": "08:30"
+    },
+    {
+      "id": 2,
+      "dni": "5067254B",
+      "name": "Anna S. Batiste",
+      "specialty": "Cirugía",
+      "doctor": "Gladys C. Horton",
+      "date": "19/09/2019",
+      "time": "09:00"
+    },
+    {
+      "id": 3,
+      "dni": "1902045C",
+      "name": "Octavia L. Hilton",
+      "specialty": "Traumatología",
+      "doctor": "Karl J. Linville",
+      "date": "19/09/2019",
+      "time": "09:30"
+    },
+    {
+      "id": 4,
+      "dni": "1880514D",
+      "name": "Tony M. Herrera",
+      "specialty": "Oftalmología",
+      "doctor": "Ruthie A. Nemeth",
+      "date": "19/09/2019",
+      "time": "10:00"
+    },
+    {
+      "id": 5,
+      "dni": "6810774E",
+      "name": "Robert J. Macias",
+      "specialty": "Cirugía",
+      "doctor": "Gladys C. Horton",
+      "date": "19/09/2019",
+      "time": "10:30"
+    }
+  ]
+}
+```
+
+We need to copy this mock data to the folder where the dev server is going to run,
+in order to do this we are going to use _copy_webpack_plugin, let's install it
+
+```
+npm install copy-webpack-plugin --save-dev
+```
+
+Then in the _webpack.config.js_ file let's propery configure the plugin:
+
+```javascript
+plugins: [
+  /// (...)
+  new CopyWebpackPlugin([
+    { from: 'mockData/*'},
+  ])
+]
+```
 
 Let's start by creating an entity called _Patient_ that will hold info about the patient and a medical appointment,
 we will place this file under _/src/model/patient.ts_

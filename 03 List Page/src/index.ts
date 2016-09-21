@@ -7,9 +7,12 @@ import {patients} from './components/patients/patients';
 import {patient} from './components/patient/patient';
 import {searchPatient} from './components/patients/searchPatient';
 import {patientsList} from './components/patients/patientsList';
+import {PatientAPI} from './api/patientAPI';
 
 var app = angular.module('myAppointmentsApp', ['ui.router'])
           .config(routing);
+
+app.service('PatientAPI', PatientAPI);
 
 app.component('header', header);
 app.component('login', login);
