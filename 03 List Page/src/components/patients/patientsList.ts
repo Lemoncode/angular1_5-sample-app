@@ -4,11 +4,11 @@ import {Patient} from '../../model/patient';
 
 class PatientsListController {
   public static $inject: Array<string> = ["PatientAPI"];
-  public patientsData : Array<Patient> = []
+  public patients : Array<Patient> = []
 
-  constructor(private patientAPI : PatientAPI) {
+  constructor(patientAPI : PatientAPI) {
     patientAPI.getAllPatientsAsync().then((data) => {
-      this.patientsData = data;
+      this.patients = data;
     }
   );
   }
@@ -38,19 +38,19 @@ export const patientsList = {
            </tr>
          </thead>
          <tbody>
-           <tr>
-             <td class="hidden-xs hidden-sm hidden-md">Sample DNI</td>
-             <td>Sample Name</td>
+           <tr ng-repeat="patient in $ctrl.patients">
+             <td class="hidden-xs hidden-sm hidden-md">{{patient.dni}}</td>
+             <td>{{patient.name}}</td>
              <td>
-               Sample Specialty
+               {{patient.specialty}}
                <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"
                  >
                </span>
              </td>
-             <td class="hidden-xs hidden-sm hidden-md">Sample Doctor</td>
-             <td class="hidden-xs">Sample Date</td>
+             <td class="hidden-xs hidden-sm hidden-md">{{patient.doctor}}</td>
+             <td class="hidden-xs">{{patient.date}}</td>
              <td class="hidden-xs">
-               Sample Time
+               {{patient.time}}
                <span class="pull-right glyphicon glyphicon-pencil"
                  >
                </span>

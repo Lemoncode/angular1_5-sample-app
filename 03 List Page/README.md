@@ -114,154 +114,6 @@ loaders: [
   },
 ```
 
-
-### Data
-
-Let's create a mock json file under the "MockDataFolder" let's call it _patients.json
-
-```json
-{
-  [
-    {
-      "id": 1,
-      "dni": "1234567A",
-      "name": "John Doe",
-      "specialty": "Traumatología",
-      "doctor": "Karl J. Linville",
-      "date": "19/09/2019",
-      "time": "08:30"
-    },
-    {
-      "id": 2,
-      "dni": "5067254B",
-      "name": "Anna S. Batiste",
-      "specialty": "Cirugía",
-      "doctor": "Gladys C. Horton",
-      "date": "19/09/2019",
-      "time": "09:00"
-    },
-    {
-      "id": 3,
-      "dni": "1902045C",
-      "name": "Octavia L. Hilton",
-      "specialty": "Traumatología",
-      "doctor": "Karl J. Linville",
-      "date": "19/09/2019",
-      "time": "09:30"
-    },
-    {
-      "id": 4,
-      "dni": "1880514D",
-      "name": "Tony M. Herrera",
-      "specialty": "Oftalmología",
-      "doctor": "Ruthie A. Nemeth",
-      "date": "19/09/2019",
-      "time": "10:00"
-    },
-    {
-      "id": 5,
-      "dni": "6810774E",
-      "name": "Robert J. Macias",
-      "specialty": "Cirugía",
-      "doctor": "Gladys C. Horton",
-      "date": "19/09/2019",
-      "time": "10:30"
-    }
-  ]
-}
-```
-
-We need to copy this mock data to the folder where the dev server is going to run,
-in order to do this we are going to use _copy_webpack_plugin, let's install it
-
-```
-npm install copy-webpack-plugin --save-dev
-```
-
-Then in the _webpack.config.js_ file let's propery configure the plugin:
-
-```javascript
-plugins: [
-  /// (...)
-  new CopyWebpackPlugin([
-    { from: 'mockData/*'},
-  ])
-]
-```
-
-Let's start by creating an entity called _Patient_ that will hold info about the patient and a medical appointment,
-we will place this file under _/src/model/patient.ts_
-
-```javascript
-export class Patient {
-  id: number;
-  dni: string;
-  name: string;
-  specialty: string;
-  doctor: string;
-  date: string;
-  time: string;
-}
-```
-
-Now we need to create some mock data, let's create it under
-the following full path _/src_/api/mockData.ts
-
-```javascript
-import { Patient } from '../model/patient';
-
-const patientsMockData: Array<Patient> = [
-  { id: 1, dni: "1234567A", name: "John Doe", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "08:30" },
-  { id: 2, dni: "5067254B", name: "Anna S. Batiste", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "09:00" },
-  { id: 3, dni: "1902045C", name: "Octavia L. Hilton", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "09:30" },
-  { id: 4, dni: "1880514D", name: "Tony M. Herrera", specialty: "Oftalmología", doctor: "Ruthie A. Nemeth", date: "19/09/2019", time: "10:00" },
-  { id: 5, dni: "6810774E", name: "Robert J. Macias", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "10:30" }
-];
-
-const specialtiesMockData: Array<string> = [
-  "Cirugía",
-  "Traumatología",
-  "Oftalmología"
-];
-
-export {
-  patientsMockData,
-  specialtiesMockData
-}
-```
-
-And to end up with the client data layer, we will create a fake api (promise based) that will expose methods load the list of
-appointments plus specialties.
-
-```javascript
-import { Patient } from '../model/patient';
-import { patientsMockData, specialtiesMockData } from './mockData';
-
-class PatientAPI {
-  getAllPatientsAsync(): Promise<Array<Patient>> {
-    let patientsPromise = new Promise((resolve, reject) => {
-      resolve(patientsMockData);
-    });
-
-    return patientsPromise;
-  };
-
-  getAllSpecialtiesAsync(): Promise<Array<string>> {
-    let specialtiesPromise = new Promise((resolve, reject) => {
-      resolve(specialtiesMockData);
-    });
-
-    return specialtiesPromise;
-  }
-}
-
-const patientAPI = new PatientAPI();
-
-export {
-  patientAPI
-}
-```
-
 ### Layout
 
 Let's start by creating two separate child components one for
@@ -446,32 +298,184 @@ export const patients = {
 }
 ```
 
+### Data
+
+Let's create a mock json file under the "MockDataFolder" let's call it _patients.json
+
+```json
+{
+  [
+    {
+      "id": 1,
+      "dni": "1234567A",
+      "name": "John Doe",
+      "specialty": "Traumatología",
+      "doctor": "Karl J. Linville",
+      "date": "19/09/2019",
+      "time": "08:30"
+    },
+    {
+      "id": 2,
+      "dni": "5067254B",
+      "name": "Anna S. Batiste",
+      "specialty": "Cirugía",
+      "doctor": "Gladys C. Horton",
+      "date": "19/09/2019",
+      "time": "09:00"
+    },
+    {
+      "id": 3,
+      "dni": "1902045C",
+      "name": "Octavia L. Hilton",
+      "specialty": "Traumatología",
+      "doctor": "Karl J. Linville",
+      "date": "19/09/2019",
+      "time": "09:30"
+    },
+    {
+      "id": 4,
+      "dni": "1880514D",
+      "name": "Tony M. Herrera",
+      "specialty": "Oftalmología",
+      "doctor": "Ruthie A. Nemeth",
+      "date": "19/09/2019",
+      "time": "10:00"
+    },
+    {
+      "id": 5,
+      "dni": "6810774E",
+      "name": "Robert J. Macias",
+      "specialty": "Cirugía",
+      "doctor": "Gladys C. Horton",
+      "date": "19/09/2019",
+      "time": "10:30"
+    }
+  ]
+}
+```
+
+We need to copy this mock data to the folder where the dev server is going to run,
+in order to do this we are going to use _copy_webpack_plugin, let's install it
+
+```
+npm install copy-webpack-plugin --save-dev
+```
+
+Then in the _webpack.config.js_ file let's propery configure the plugin:
+
+```javascript
+plugins: [
+  /// (...)
+  new CopyWebpackPlugin([
+    { from: 'mockData/*'},
+  ])
+]
+```
+
+Let's start by creating an entity called _Patient_ that will hold info about the patient and a medical appointment,
+we will place this file under _/src/model/patient.ts_
+
+```javascript
+export class Patient {
+  id: number;
+  dni: string;
+  name: string;
+  specialty: string;
+  doctor: string;
+  date: string;
+  time: string;
+}
+```
+
+Now we need to create some mock data, let's create it under
+the following full path _/src_/api/mockData.ts
+
+```javascript
+import { Patient } from '../model/patient';
+
+const patientsMockData: Array<Patient> = [
+  { id: 1, dni: "1234567A", name: "John Doe", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "08:30" },
+  { id: 2, dni: "5067254B", name: "Anna S. Batiste", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "09:00" },
+  { id: 3, dni: "1902045C", name: "Octavia L. Hilton", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "09:30" },
+  { id: 4, dni: "1880514D", name: "Tony M. Herrera", specialty: "Oftalmología", doctor: "Ruthie A. Nemeth", date: "19/09/2019", time: "10:00" },
+  { id: 5, dni: "6810774E", name: "Robert J. Macias", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "10:30" }
+];
+
+const specialtiesMockData: Array<string> = [
+  "Cirugía",
+  "Traumatología",
+  "Oftalmología"
+];
+
+export {
+  patientsMockData,
+  specialtiesMockData
+}
+```
+
+And to end up with the client data layer, we will create a fake api (promise based) that will expose methods load the list of
+appointments plus specialties.
+
+```javascript
+import { Patient } from '../model/patient';
+
+export class PatientAPI {
+  public static $inject: Array<string> = ["$http"];
+
+  private baseUrl: string = './mockData/patients.json';
+
+  constructor(private $http : angular.IHttpService) {
+
+  }
+
+  getAllPatientsAsync(): Promise<Array<Patient>> {
+    return this.$http.get(this.baseUrl).then(response => response.data);
+  };
+}
+```
+
+We need to register this service in the main app.
+
+```javascript
+import {PatientAPI} from './api/patientAPI';
+
+app.service('PatientAPI', PatientAPI);
+```
 
 ### Interaction
 
 Now it's time to load the information about the patient's appointments in the
 appointments table.
 
-First of all le't s import some needed name space (patients entitiy, plus
-  patients data api)
+First of all let's import some needed name space (patients entitiy, plus
+  patients data api) in our _patientsList.ts
 
 ```javascript
+import {PatientAPI} from "../../api/patientAPI";
+import {Patient} from '../../model/patient';
 ```
 
-We are going to define a member variable that will hold a list of Patients.
+We are going to define a member variable that will hold a list of Patients,
+and request the PatientsAPI service, then we will make the AJAX called
+to dynamically load the list of patients (_patientsList.ts_).
 
 ```javascript
-```
+class PatientsListController {
+  public static $inject: Array<string> = ["PatientAPI"];
+  public patientsData : Array<Patient> = []
 
-
-In the constructor of the PatientsList component we will load the list of
-patients via API
-
-```javascript
+  constructor(patientAPI : PatientAPI) {
+    patientAPI.getAllPatientsAsync().then((data) => {
+      this.patientsData = data;
+    }
+  );
+  }
+}
 ```
 
 Finally we are going to bind the list into the layout using an ng-repeat
 and binding the fields to the given span.
 
 ```` html
+
 ```
