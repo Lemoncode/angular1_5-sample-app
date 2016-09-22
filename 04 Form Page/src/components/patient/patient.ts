@@ -32,22 +32,38 @@ export const patient = {
             </div>
             <div class="col-sm-6 form-group">
               <label for="dni">DNI</label>
-              <input type="text" class="form-control" id="dni"/>
+              <input type="text"
+                class="form-control"
+                id="dni"
+                ng-model="$ctrl.patient.dni"
+              />
             </div>
             <div class="col-sm-6 form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name"/>
+              <input type="text"
+               class="form-control"
+               id="name"
+               ng-model="$ctrl.patient.name"
+               />
             </div>
             <div class="col-xs-12 form-group">
               <label>Appointment info</label>
             </div>
             <div class="col-md-6 col-lg-3 form-group">
               <label for="date">Date</label>
-              <input type="date" class="form-control" id="date"/>
+              <input type="date"
+              class="form-control"
+              id="date"
+              ng-model="$ctrl.patient.date"
+              />
             </div>
             <div class="col-md-6 col-lg-3 form-group">
               <label for="time">Time</label>
-              <input type="time" class="form-control" id="time"/>
+              <input type="time"
+              class="form-control"
+              id="time"
+              ng-model="$ctrl.patient.time"
+              />
             </div>
             <div class="col-md-6 col-lg-3 form-group">
               <label for="specialty">Specialty</label>

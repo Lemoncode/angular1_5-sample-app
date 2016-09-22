@@ -5,6 +5,6 @@ export class Patient {
   name: string;
   specialty: string;
   doctor: string;
-  date: string;
-  time: string;
+  date: Date;
+  time: Date;
 }

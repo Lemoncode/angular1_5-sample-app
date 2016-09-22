@@ -123,27 +123,42 @@ Since we are just mocking data, we are going to add an entry to the _api/patient
 appointment, by passing as entry param it's ID (we will load the whole json file then filter in memory, **remark:
 this is just a mock dummy data layer, do not do this in a real project**).
 
+We will use promises for this, since angular needs it's special tricks to get on the $scope digest cycle, we
+cannot directly use ES6 promises, we have to use $q.
+
+Let's request this service into the patientAPI
+
+```javascript
+export class PatientAPI {
+  public static $inject: Array<string> = ['$http', '$q'];
+
+  private baseUrl: string = './mockData/patients.json';
+
+  constructor(private $http : angular.IHttpService, private $q : angular.IQService) {
+```
+
+
 ```javascript
 getPatientById(id: number) : Promise<Patient> {
-   const promise = new Promise(
-     (resolve, reject) => {
-       this.getAllPatientsAsync().then((patients) => {
-            // refine this later one
-            const nonTypedPatient = patients.filter(
-              (patient) => {
-                return (patient.id == id);
-              }
-            )[0];
+  const defer = this.$q.defer();
 
-            const patient : Patient = nonTypedPatient;
+  this.getAllPatientsAsync().then((patients) => {
+        // refine this later one
+        const nonTypedPatient = patients.filter(
+          (patient) => {
+            return (patient.id == id);
+          }
+        )[0];
 
-            resolve(patient);
-       })
-     }
-   )
-   return promise;
+        const patient : Patient = nonTypedPatient;
+
+        defer.resolve(patient);
+   });
+
+   return defer.promise;
 }
 ```
+
 ## Interaction
 
 In the _patient/patient.ts_ component we are going to load the appointment information by getting the Id from
