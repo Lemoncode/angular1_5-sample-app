@@ -173,5 +173,14 @@ We have the data loaded in our component let's bind it and display it in our for
 _patient/patient.ts_ template content, not down: we are using ng-model directive to bind the forms controls
 to the patient/appointment info).
 
+Let's bind first the straight forward fields (ng-model inputs)
+
 ```html
 ```
+
+Now let's jump into feeding dropdown like entries.
+
+```html
+```
+
+Let's add an implementation for the save button:
