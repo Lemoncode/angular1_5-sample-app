@@ -303,55 +303,53 @@ export const patients = {
 Let's create a mock json file under the "MockDataFolder" let's call it _patients.json
 
 ```json
-{
-  [
-    {
-      "id": 1,
-      "dni": "1234567A",
-      "name": "John Doe",
-      "specialty": "Traumatología",
-      "doctor": "Karl J. Linville",
-      "date": "19/09/2019",
-      "time": "08:30"
-    },
-    {
-      "id": 2,
-      "dni": "5067254B",
-      "name": "Anna S. Batiste",
-      "specialty": "Cirugía",
-      "doctor": "Gladys C. Horton",
-      "date": "19/09/2019",
-      "time": "09:00"
-    },
-    {
-      "id": 3,
-      "dni": "1902045C",
-      "name": "Octavia L. Hilton",
-      "specialty": "Traumatología",
-      "doctor": "Karl J. Linville",
-      "date": "19/09/2019",
-      "time": "09:30"
-    },
-    {
-      "id": 4,
-      "dni": "1880514D",
-      "name": "Tony M. Herrera",
-      "specialty": "Oftalmología",
-      "doctor": "Ruthie A. Nemeth",
-      "date": "19/09/2019",
-      "time": "10:00"
-    },
-    {
-      "id": 5,
-      "dni": "6810774E",
-      "name": "Robert J. Macias",
-      "specialty": "Cirugía",
-      "doctor": "Gladys C. Horton",
-      "date": "19/09/2019",
-      "time": "10:30"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "dni": "1234567A",
+    "name": "John Doe",
+    "specialty": "Traumatología",
+    "doctor": "Karl J. Linville",
+    "date": "2017-02-15T00:00:00Z",
+    "time": "2017-02-15T00:08:30Z"
+  },
+  {
+    "id": 2,
+    "dni": "5067254B",
+    "name": "Anna S. Batiste",
+    "specialty": "Cirugía",
+    "doctor": "Gladys C. Horton",
+    "date": "2017-02-15T00:00:00Z",
+    "time": "2017-02-15T09:10:00Z"
+  },
+  {
+    "id": 3,
+    "dni": "1902045C",
+    "name": "Octavia L. Hilton",
+    "specialty": "Traumatología",
+    "doctor": "Karl J. Linville",
+    "date": "2017-03-17T00:00:00Z",
+    "time": "2017-03-17T10:10:00Z"
+  },
+  {
+    "id": 4,
+    "dni": "1880514D",
+    "name": "Tony M. Herrera",
+    "specialty": "Oftalmología",
+    "doctor": "Ruthie A. Nemeth",
+    "date": "2017-03-17T00:00:00Z",
+    "time": "2017-03-17T11:00:00Z"
+  },
+  {
+    "id": 5,
+    "dni": "6810774E",
+    "name": "Robert J. Macias",
+    "specialty": "Cirugía",
+    "doctor": "Gladys C. Horton",
+    "date": "2017-02-15T00:00:00Z",
+    "time": "2017-02-15T11:30:00Z"
+  }
+]
 ```
 
 We need to copy this mock data to the folder where the dev server is going to run,
@@ -382,8 +380,8 @@ export class Patient {
   name: string;
   specialty: string;
   doctor: string;
-  date: string;
-  time: string;
+  date: Date;
+  time: Date;
 }
 ```
 
@@ -461,9 +459,9 @@ and binding the fields to the given span.
     </span>
   </td>
   <td class="hidden-xs hidden-sm hidden-md">{{patient.doctor}}</td>
-  <td class="hidden-xs">{{patient.date}}</td>
+  <td class="hidden-xs">{{patient.date | date:'dd/MM/yyyy'}}</td>
   <td class="hidden-xs">
-    {{patient.time}}
+    {{patient.time | date:'hh:mm'}}
     <span class="pull-right glyphicon glyphicon-pencil"
       >
     </span>

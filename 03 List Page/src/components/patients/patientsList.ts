@@ -48,9 +48,9 @@ export const patientsList = {
                </span>
              </td>
              <td class="hidden-xs hidden-sm hidden-md">{{patient.doctor}}</td>
-             <td class="hidden-xs">{{patient.date}}</td>
+             <td class="hidden-xs">{{patient.date | date:'dd/MM/yyyy'}}</td>
              <td class="hidden-xs">
-               {{patient.time}}
+               {{patient.time  | date:'hh:mm'}}
                <span class="pull-right glyphicon glyphicon-pencil"
                  >
                </span>
