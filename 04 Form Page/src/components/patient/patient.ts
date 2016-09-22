@@ -1,8 +1,18 @@
 import * as angular from 'angular';
+import {PatientAPI} from "../../api/patientAPI";
+import {Patient} from '../../model/patient';
 
 class PatientController {
+  public static $inject: Array<string> = ['PatientAPI', '$stateParams'];
+  public patient : Patient = null;
 
-  constructor() {
+  constructor(patientAPI : PatientAPI, $stateParams : angular.ui.IStateParamsService) {
+    const patientId : number = $stateParams['patientId'];
+
+    patientAPI.getPatientById(patientId).then((data) => {
+      this.patient = data;
+    });
+
   }
 }
 

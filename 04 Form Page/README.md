@@ -118,3 +118,60 @@ the component template with the following one.
 ```
 
 ### Data
+
+Since we are just mocking data, we are going to add an entry to the _api/patientAPI_ that will load a single
+appointment, by passing as entry param it's ID (we will load the whole json file then filter in memory, **remark:
+this is just a mock dummy data layer, do not do this in a real project**).
+
+```javascript
+getPatientById(id: number) : Promise<Patient> {
+   const promise = new Promise(
+     (resolve, reject) => {
+       this.getAllPatientsAsync().then((patients) => {
+            // refine this later one
+            const nonTypedPatient = patients.filter(
+              (patient) => {
+                return (patient.id == id);
+              }
+            )[0];
+
+            const patient : Patient = nonTypedPatient;
+
+            resolve(patient);
+       })
+     }
+   )
+   return promise;
+}
+```
+## Interaction
+
+In the _patient/patient.ts_ component we are going to load the appointment information by getting the Id from
+the route param, and the call the api _loadPatient_ method.
+
+```javascript
+import * as angular from 'angular';
+import {PatientAPI} from "../../api/patientAPI";
+import {Patient} from '../../model/patient';
+
+class PatientController {
+  public static $inject: Array<string> = ['PatientAPI', '$stateParams'];
+  public patient : Patient = null;
+
+  constructor(patientAPI : PatientAPI, $stateParams : angular.ui.IStateParamsService) {
+    const patientId : number = $stateParams['patientId'];
+
+    patientAPI.getPatientById(patientId).then((data) => {
+      this.patient = data;
+    });
+
+  }
+}
+```
+
+We have the data loaded in our component let's bind it and display it in our form (let's part of the
+_patient/patient.ts_ template content, not down: we are using ng-model directive to bind the forms controls
+to the patient/appointment info).
+
+```html
+```
