@@ -61,8 +61,7 @@ function routing($locationProvider: ng.ILocationProvider,
 
     // html5 removes the need for # in URL
     $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
+        enabled: false
     });
 
     $stateProvider.state('home', <ng.ui.IState>{
@@ -79,7 +78,7 @@ function routing($locationProvider: ng.ILocationProvider,
 export default routing;
 ```
 
-Now we have to comeback to our app.tsx file and register our routing function
+Now we have to comeback to our index.ts file and register our routing function
 
 ```javascript
 import routing from './app-routes';
