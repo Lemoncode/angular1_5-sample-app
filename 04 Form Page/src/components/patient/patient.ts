@@ -3,12 +3,14 @@ import {PatientAPI} from "../../api/patientAPI";
 import {Patient} from '../../model/patient';
 
 class PatientController {
-  public static $inject: Array<string> = ['PatientAPI', '$stateParams'];
+  public static $inject: Array<string> = ['PatientAPI', '$stateParams', '$log'];
   public patient : Patient = null;
   public specialties : Array<string>;
   public doctors : Array<string>;
 
-  constructor(patientAPI : PatientAPI, $stateParams : angular.ui.IStateParamsService) {
+  constructor(patientAPI : PatientAPI,
+             $stateParams : angular.ui.IStateParamsService,
+             private $log : angular.ILogService) {
     const patientId : number = $stateParams['patientId'];
 
     patientAPI.getPatientById(patientId).then((data) => {
@@ -22,8 +24,10 @@ class PatientController {
     // More info about how to bind combo's / lists...
     // https://docs.angularjs.org/api/ng/directive/select
     // https://docs.angularjs.org/api/ng/directive/ngOptions
+  }
 
-
+  save() {
+    this.$log.log(this.patient);
   }
 }
 
@@ -96,7 +100,7 @@ export const patient = {
             </div>
             <div class="col-xs-offset-10 col-xs-2 form-group">
               <div class="pull-right">
-                <button type="button" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-success"ng-click="$ctrl.save()">Guardar</button>
               </div>
             </div>
           </form>

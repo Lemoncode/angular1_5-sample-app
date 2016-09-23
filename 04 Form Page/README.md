@@ -62,7 +62,7 @@ npm start
 
 ### Layout
 
-It's time to build the appoitnmend edition layout, let's jump into the _patient/patient.ts_ file and replace
+It's time to build the appointment edition layout, let's jump into the _patient/patient.ts_ file and replace
 the component template with the following one.
 
 ```html
@@ -152,6 +152,10 @@ getPatientById(id: number) : Promise<Patient> {
 
         const patient : Patient = nonTypedPatient;
 
+        // Mapping should be placed in a separate map
+        patient.date = new Date(<any>nonTypedPatient.date);
+        patient.time = new Date(<any>nonTypedPatient.time)
+
         defer.resolve(patient);
    });
 
@@ -191,11 +195,87 @@ to the patient/appointment info).
 Let's bind first the straight forward fields (ng-model inputs)
 
 ```html
+<div class="col-sm-6 form-group">
+  <label for="dni">DNI</label>
+  <input type="text"
+    class="form-control"
+    id="dni"
+    ng-model="$ctrl.patient.dni"
+  />
+</div>
+<div class="col-sm-6 form-group">
+  <label for="name">Name</label>
+  <input type="text"
+   class="form-control"
+   id="name"
+   ng-model="$ctrl.patient.name"
+   />
+</div>
+<div class="col-xs-12 form-group">
+  <label>Appointment info</label>
+</div>
+<div class="col-md-6 col-lg-3 form-group">
+  <label for="date">Date</label>
+  <input type="date"
+  class="form-control"
+  id="date"
+  ng-model="$ctrl.patient.date"
+  />
+</div>
+<div class="col-md-6 col-lg-3 form-group">
+  <label for="time">Time</label>
+  <input type="time"
+  class="form-control"
+  id="time"
+  ng-model="$ctrl.patient.time"
+  />
 ```
 
 Now let's jump into feeding dropdown like entries.
 
 ```html
+<div class="col-md-6 col-lg-3 form-group">
+  <label for="specialty">Specialty</label>
+  <select id="specialty"
+    class="form-control"
+    ng-model="$ctrl.patient.specialty"
+    >
+    <option ng-repeat="option in $ctrl.specialties" ng-value="option">{{option}}</option>
+  </select>
+</div>
+<div class="col-md-6 col-lg-3 form-group">
+  <label for="doctor">Doctor</label>
+  <select id="doctor"
+    class="form-control"
+    ng-model="$ctrl.patient.doctor"
+    >
+   <option ng-repeat="option in $ctrl.doctors" ng-value="option">{{option}}</option>
+  </select>
+</div>
 ```
 
 Let's add an implementation for the save button:
+
+For this sample we will just dump the updated entity into the console log in order
+to do that we have to request angular IOC for the $log service
+
+```
+public static $inject: Array<string> = ['PatientAPI', '$stateParams', '$log'];
+
+constructor(patientAPI : PatientAPI,
+           $stateParams : angular.ui.IStateParamsService,
+           private $log : angular.ILogService) {
+```
+
+
+```
+save() {
+  this.$log.log(this.patient);
+}
+```
+
+And let's bind it to the button click event
+
+```
+<button type="button" class="btn btn-success"ng-click="$ctrl.save()">Guardar</button>
+```
