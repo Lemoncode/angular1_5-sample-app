@@ -27,6 +27,12 @@ Let's start by installing Angular 1.x library
 npm install angular@1.5.8 --save
 ```
 
+Let's install typing as global
+
+```
+npm install typings -g
+```
+
 Let's install the angularjs typings:
 
 ```
@@ -39,7 +45,7 @@ We will need to install JQuery typings as well
 typings install dt~jquery --global --save
 ```
 
-Under _src_ folder let's replace the content of the _index.tsx_ file:
+Under _src_ folder let's replace the content of the _index.ts_ file:
 
 ```javascript
 import * as angular from 'angular'
