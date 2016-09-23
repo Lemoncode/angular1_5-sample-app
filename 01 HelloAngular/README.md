@@ -69,7 +69,7 @@ First we will indicate in the HTML that we are going to use this application (in
 ```
 
 Under _src_ let's create the following subfolders _components/common_ and
-under that subfolder let's create a file called _header.tsx_ this file will
+under that subfolder let's create a file called _header.ts_ this file will
 contain a simple "header" component:
 
 ```javascript
