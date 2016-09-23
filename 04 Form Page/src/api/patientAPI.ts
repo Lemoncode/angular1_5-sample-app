@@ -27,8 +27,8 @@ export class PatientAPI {
           const patient : Patient = nonTypedPatient;
 
           // Mapping should be placed in a separate map
-          patient.date = new Date(nonTypedPatient.date);
-          patient.time = new Date(nonTypedPatient.time)
+          patient.date = new Date(<any>nonTypedPatient.date);
+          patient.time = new Date(<any>nonTypedPatient.time)
 
           defer.resolve(patient);
      });
