@@ -61,8 +61,7 @@ function routing($locationProvider: ng.ILocationProvider,
 
     // html5 removes the need for # in URL
     $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
+        enabled: false
     });
 
     $stateProvider.state('home', <ng.ui.IState>{
