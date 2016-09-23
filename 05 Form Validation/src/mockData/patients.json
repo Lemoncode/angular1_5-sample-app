@@ -1,0 +1,47 @@
+  [
+    {
+      "id": 1,
+      "dni": "1234567A",
+      "name": "John Doe",
+      "specialty": "Traumatology",
+      "doctor": "Karl J. Linville",
+      "date": "2017-02-15T00:00:00Z",
+      "time": "2017-02-15T00:08:30Z"
+    },
+    {
+      "id": 2,
+      "dni": "5067254B",
+      "name": "Anna S. Batiste",
+      "specialty": "Surgery",
+      "doctor": "Gladys C. Horton",
+      "date": "2017-02-15T00:00:00Z",
+      "time": "2017-02-15T09:10:00Z"
+    },
+    {
+      "id": 3,
+      "dni": "1902045C",
+      "name": "Octavia L. Hilton",
+      "specialty": "Traumatology",
+      "doctor": "Karl J. Linville",
+      "date": "2017-03-17T00:00:00Z",
+      "time": "2017-03-17T10:10:00Z"
+    },
+    {
+      "id": 4,
+      "dni": "1880514D",
+      "name": "Tony M. Herrera",
+      "specialty": "Ophthalmology",
+      "doctor": "Ruthie A. Nemeth",
+      "date": "2017-03-17T00:00:00Z",
+      "time": "2017-03-17T11:00:00Z"
+    },
+    {
+      "id": 5,
+      "dni": "6810774E",
+      "name": "Robert J. Macias",
+      "specialty": "Surgery",
+      "doctor": "Gladys C. Horton",
+      "date": "2017-02-15T00:00:00Z",
+      "time": "2017-02-15T11:30:00Z"
+    }
+  ]
