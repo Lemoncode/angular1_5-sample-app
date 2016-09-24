@@ -41,7 +41,7 @@ export const patient = {
      </div>
 
      <div class="row">
-          <form id="edit-patient-form">
+          <form id="edit-patient-form" name="editPatientForm">
             <div class="col-xs-12 form-group">
               <label>Datos Paciente</label>
             </div>
@@ -49,9 +49,15 @@ export const patient = {
               <label for="dni">DNI</label>
               <input type="text"
                 class="form-control"
+                name="dni"
                 id="dni"
                 ng-model="$ctrl.patient.dni"
+                ng-required="true"
               />
+              <div ng-messages="editPatientForm.dni.$error" style="color:maroon" role="alert">
+                 <div ng-message="required">You did not enter a field</div>
+             </div>
+
             </div>
             <div class="col-sm-6 form-group">
               <label for="name">Name</label>
@@ -100,7 +106,14 @@ export const patient = {
             </div>
             <div class="col-xs-offset-10 col-xs-2 form-group">
               <div class="pull-right">
-                <button type="button" class="btn btn-success"ng-click="$ctrl.save()">Guardar</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  ng-click="$ctrl.save()"
+                  ng-disabled="editPatientForm.$invalid"
+                  >
+                Guardar
+                </button>
               </div>
             </div>
           </form>
