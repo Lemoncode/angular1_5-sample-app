@@ -26,7 +26,13 @@ abandoned project, [more info](http://stackoverflow.com/questions/33652668/angul
 npm install angular-ui-router --save
 ```
 
-Let's install typings definition for anguiar-ui-router
+First we need to install Typings CLI Utility. After that, we could use typing commands
+
+```
+npm install typings --global
+```
+
+Let's install typings definition for angular-ui-router
 
 ```
 typings install dt~angular-ui-router --global --save
