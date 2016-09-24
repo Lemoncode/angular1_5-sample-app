@@ -8,12 +8,14 @@ import {patient} from './components/patient/patient';
 import {searchPatient} from './components/patients/searchPatient';
 import {patientsList} from './components/patients/patientsList';
 import {PatientAPI} from './api/patientAPI';
-
+import {ValidateDni} from './validations/validateDni';
 
 var app = angular.module('myAppointmentsApp', ['ui.router', require('angular-messages')])
           .config(routing);
 
 app.service('PatientAPI', PatientAPI);
+
+app.directive('validateDni', ValidateDni.Factory());
 
 app.component('header', header);
 app.component('login', login);

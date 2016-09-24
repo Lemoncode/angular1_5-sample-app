@@ -53,9 +53,11 @@ export const patient = {
                 id="dni"
                 ng-model="$ctrl.patient.dni"
                 ng-required="true"
+                validate-dni=""
               />
               <div ng-messages="editPatientForm.dni.$error" style="color:maroon" role="alert">
                  <div ng-message="required">You did not enter a field</div>
+                 <div ng-message="validateDni">DNI not valid</div>
              </div>
 
             </div>
