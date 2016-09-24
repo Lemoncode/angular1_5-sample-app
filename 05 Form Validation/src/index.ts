@@ -9,7 +9,8 @@ import {searchPatient} from './components/patients/searchPatient';
 import {patientsList} from './components/patients/patientsList';
 import {PatientAPI} from './api/patientAPI';
 
-var app = angular.module('myAppointmentsApp', ['ui.router'])
+
+var app = angular.module('myAppointmentsApp', ['ui.router', require('angular-messages')])
           .config(routing);
 
 app.service('PatientAPI', PatientAPI);
