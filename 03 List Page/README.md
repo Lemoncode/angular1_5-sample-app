@@ -359,9 +359,14 @@ in order to do this we are going to use _copy_webpack_plugin, let's install it
 npm install copy-webpack-plugin --save-dev
 ```
 
-Then in the _webpack.config.js_ file let's propery configure the plugin:
+Then in the _webpack.config.js_ file let's properly configure the plugin:
 
 ```javascript
+
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
+...
+
 plugins: [
   /// (...)
   new CopyWebpackPlugin([
