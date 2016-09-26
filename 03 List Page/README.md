@@ -222,7 +222,7 @@ class PatientsListController {
   }
 }
 
-export const patientList = {
+export const patientsList = {
   template:
   `
   <div class="well">
