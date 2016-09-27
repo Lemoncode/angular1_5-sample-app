@@ -10,8 +10,11 @@ import {patientsList} from './components/patients/patientsList';
 import {PatientAPI} from './api/patientAPI';
 import {ValidateDni} from './validations/validateDni';
 
-var app = angular.module('myAppointmentsApp', ['ui.router', require('angular-messages')])
-          .config(routing);
+const angMessages = require('angular-messages');
+
+
+var app = angular.module('myAppointmentsApp', ['ui.router',angMessages]).config(routing);
+
 
 app.service('PatientAPI', PatientAPI);
 
