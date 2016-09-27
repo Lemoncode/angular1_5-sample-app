@@ -38,7 +38,7 @@ typings install dt~node --save --global
 ```
 
 
-Let's include this dependency in our project (_index.ts_).
+Let's include this dependency in our project (_index.tsx_).
 
 
 ```javascript
@@ -117,9 +117,7 @@ export class ValidateDni implements ng.IDirective{
  public link: (scope: angular.IScope , elem: ng.IAugmentedJQuery, attrs: angular.IAttributes, ngModel: angular.INgModelController) => void;
  restrict ='A';
  require = 'ngModel';
- public scope = {
-   ngModel:'='
- }
+
 
  constructor(scope: angular.IScope, elem:ng.IAugmentedJQuery, attrs: angular.IAttributes, ngModel: angular.INgModelController, $log:angular.ILogService)
  {
