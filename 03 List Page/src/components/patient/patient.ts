@@ -10,7 +10,7 @@ class PatientController {
 
 export const patient = {
   template: `
-      <span>Bindings test: {{$ctrl.sampleBinding}}</h1>      
+      <h1>Bindings test: {{$ctrl.sampleBinding}}</h1>      
   `,
   controller: PatientController
 }
