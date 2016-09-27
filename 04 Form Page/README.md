@@ -229,6 +229,7 @@ Let's bind first the straight forward fields (ng-model inputs)
   id="time"
   ng-model="$ctrl.patient.time"
   />
+</div>
 ```
 
 Now let's jump into feeding dropdown like entries.
