@@ -23,7 +23,7 @@ to follow this step guides you will need to take as starting point sample "04 Fr
 ### Adding libraries
 
 First we are going to install and add to the project an angular library to
-display error messages (ng-message). In this case we need to make some special
+display error messages (angular-messages). In this case we need to make some special
 tweaking
 
 Install packages:
@@ -42,7 +42,8 @@ Let's include this dependency in our project (_index.ts_).
 
 
 ```javascript
-var app = angular.module('myAppointmentsApp', ['ui.router', 'ng-messages'])
+const angMessages = require('angular-messages');
+var app = angular.module('myAppointmentsApp', ['ui.router',angMessages]).config(routing);
 ```
 
 
