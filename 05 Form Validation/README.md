@@ -38,7 +38,7 @@ typings install dt~node --save --global
 ```
 
 
-Let's include this dependency in our project (_index.tsx_).
+Let's include this dependency in our project (_index.ts_).
 
 
 ```javascript
