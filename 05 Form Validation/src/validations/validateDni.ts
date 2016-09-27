@@ -4,7 +4,7 @@
   public link: (scope: angular.IScope , elem: ng.IAugmentedJQuery, attrs: angular.IAttributes, ngModel: angular.INgModelController) => void;
   restrict ='A';
   require = 'ngModel';
- 
+
 
   constructor(scope: angular.IScope, elem:ng.IAugmentedJQuery, attrs: angular.IAttributes, ngModel: angular.INgModelController, $log:angular.ILogService)
   {
@@ -18,16 +18,10 @@
         return;
       }
 
-      ngModel.$parsers.push(validator);
-
-      function validator(modelValue: string) {
-        var val = modelValue;
-        var isValid = validateDNI(val);
-
-        ngModel.$setValidity('validateDni', isValid);
-
-        return modelValue;
-      };
+      // Moving to 1.5 validation: http://codepen.io/transistor1/pen/pgXqNo
+      ngModel.$validators['validateDni'] = function(dni) {
+              return validateDNI(dni);
+      }
 
       function validateDNI(dni)
       {
