@@ -1,6 +1,6 @@
 # angular1_5-sample-app
 
-[Work in progress] Simple LOB app includes login, list, form edit
+Simple LOB app includes login, list, form edit
 
 Each sample will contains a readme.md file including an step by step guide to recreate it.
 
