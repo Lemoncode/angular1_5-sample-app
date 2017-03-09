@@ -27,22 +27,17 @@ Let's start by installing Angular 1.x library
 npm install angular@1.5.8 --save
 ```
 
-Let's install typing as global
+
+Let's install the angularjs types:
 
 ```
-npm install typings -g
+npm install @Types/angular  --save-dev
 ```
 
-Let's install the angularjs typings:
+We will need to install JQuery types as well
 
 ```
-typings install dt~angular --global --save
-```
-
-We will need to install JQuery typings as well
-
-```
-typings install dt~jquery --global --save
+npm install @Types/jquery --save-dev
 ```
 
 Under _src_ folder let's replace the content of the _index.ts_ file:
