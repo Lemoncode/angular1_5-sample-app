@@ -34,7 +34,7 @@ npm install angular-messages --save
 ```
 
 ```
-typings install dt~node --save --global
+npm install @types/node --save-dev
 ```
 
 
