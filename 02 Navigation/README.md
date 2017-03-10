@@ -26,22 +26,16 @@ abandoned project, [more info](http://stackoverflow.com/questions/33652668/angul
 npm install angular-ui-router --save
 ```
 
-First we need to install Typings CLI Utility. After that, we could use typing commands
+We need to install types definition for angular-ui-router
 
 ```
-npm install typings --global
+npm install @Types/angular-ui-router --save-dev
 ```
 
-Let's install typings definition for angular-ui-router
+We need to install as well es6-promise types
 
 ```
-typings install dt~angular-ui-router --global --save
-```
-
-We need to install as well es6-promise tpyings
-
-```
-typings  install dt~es6-promise --global --save
+npm install @Types/es6-promise --save-dev
 ```
 
 Now we need to indicate in _index.ts_ that we are going to use this module in our
